@@ -470,6 +470,119 @@ Preconditions: Target student already exists in the directory.
 
 ---
 
+### Use case 6: View Assignment/Milestone Progress
+
+Name: View Assignment/Milestone Progress
+
+Actor: Tutor
+
+System: LeTutor
+
+Preconditions: Teacher is signed in, Student exists, Predefined milestone exists for student.
+
+
+**MSS**
+
+1.  Teacher opens the student profile.
+2.  Teacher navigates to the assignments/milestones progress section.
+3.  System displays all predefined assignments/milestones as status bubbles.
+4.  System shows the current status of each bubble (e.g., completed, pending, overdue).
+5.  Teacher reviews the student’s progress across all milestones.
+    Use case ends.
+
+**Extensions**
+
+* 3a. No predefined milestones exist
+  
+     * 3a1. System shows an empty state message.
+  
+        Use case ends.
+        
+---
+
+### Use case 7: Mark Milestone as Completed
+
+Name: Mark Milestone as Completed
+
+Actor: Tutor
+
+System: LeTutor
+
+Preconditions: Teacher is signed in as Teacher, Target student exists, A predefined assignment/milestone exists for the student.
+
+
+**MSS**
+
+1. Teacher opens the student profile.
+2. Teacher selects a pending or overdue milestone bubble.
+3. Teacher marks the milestone as completed.
+4. System saves the updated milestone status.
+5. UI updates the bubble to show completed status.
+   Use case ends.
+
+**Extensions**
+* 4a. Save error
+  
+     * 4a1. System displays an error and keeps the previous milestone status
+  
+        Use case ends.
+
+---
+
+### Use case 8: Automatically Mark Milestone as Overdue
+
+Name: Automatically Mark Milestone as Overdue
+
+Actor: Tutor
+
+System: Legoat
+
+Preconditions: A predefined milestone exists with a due date, The milestone is not completed, The due date has passed.
+
+**MSS**
+
+1. System checks milestone due dates periodically or when the student profile is accessed.
+2. System identifies milestones whose due dates have passed and are still incomplete.
+3. System changes the milestone status to overdue.
+4. UI updates the milestone bubble to show overdue status.
+   Use case ends.
+
+**Extensions**
+* 3a. Status update error
+  
+     * 3a1. System logs the error and retains the previous milestone status
+  
+        Use case ends.
+
+---
+
+### Use case 9: View Students with Overdue Milestones
+
+Name: View Students with Overdue Milestones
+
+Actor: Tutor
+
+System: Legoat
+
+Preconditions: Teacher is signed in as Teacher, Students and predefined milestones exist, At least one student has milestone records
+
+
+**MSS**
+
+1. Teacher opens the student management or progress overview page.
+2. Teacher views milestone statuses across multiple students.
+3. System highlights students with overdue milestone bubbles.
+4. Teacher identifies which students are falling behind.
+   Use case ends.
+
+**Extensions**
+* 3a. No students have overdue milestones.
+  
+     * 3a1. System shows that no overdue milestones are present.
+  
+        Use case ends.
+---
+
 ### Use case 10: View the details of an Assignment
 
 Name: View Assignment details
