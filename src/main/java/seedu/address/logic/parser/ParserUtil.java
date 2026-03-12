@@ -9,15 +9,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.DueDate;
+import seedu.address.model.assignment.Group;
+import seedu.address.model.assignment.Label;
+import seedu.address.model.assignment.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.assignment.DueDate;
-import seedu.address.model.assignment.Group;
-import seedu.address.model.assignment.Label;
-import seedu.address.model.assignment.Order;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -126,6 +126,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String label} into a {@code Label}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code label} is invalid.
+     */
     public static Label parseLabel(String label) throws ParseException {
         requireNonNull(label);
         String trimmed = label.trim();
@@ -135,6 +141,12 @@ public class ParserUtil {
         return new Label(trimmed);
     }
 
+    /**
+     * Parses a {@code String group} into a {@code Group}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code group} is invalid.
+     */
     public static Group parseGroup(String group) throws ParseException {
         requireNonNull(group);
         String trimmed = group.trim();
@@ -144,6 +156,12 @@ public class ParserUtil {
         return new Group(trimmed);
     }
 
+    /**
+     * Parses a {@code String dueDate} into a {@code DueDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dueDate} is invalid.
+     */
     public static DueDate parseDueDate(String dueDate) throws ParseException {
         requireNonNull(dueDate);
         String trimmed = dueDate.trim();
@@ -153,7 +171,14 @@ public class ParserUtil {
         return new DueDate(trimmed);
     }
 
-    // Need to handle NumberFormatException thrown by Integer.parseInt() in parseOrder() since it is not a checked exception
+    /**
+     * Parses a {@code String order} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Need to handle NumberFormatException thrown by Integer.parseInt() in parseOrder()
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+
     public static Order parseOrder(String order) throws ParseException {
         requireNonNull(order);
         String trimmed = order.trim();

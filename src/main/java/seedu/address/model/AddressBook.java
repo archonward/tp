@@ -110,11 +110,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Returns true if an assignment with the same identity as {@code assignment} exists in the address book.
+     */
     public boolean hasAssignment(Assignment assignment) {
         requireNonNull(assignment);
         return assignments.contains(assignment);
     }
 
+    /**
+     * Adds an assignment to the address book.
+     * The assignment must not already exist in the address book.
+     */
     public void addAssignment(Assignment assignment) {
         assignments.add(assignment);
     }
