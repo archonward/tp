@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
+import java.util.HashSet;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -48,12 +49,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         // Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         // Temporary placeholder. Actual StudentId is assigned in AddCommand.execute().
         StudentId tempId = new StudentId("S0");
-        String parts[] = args.split("\\{")[1].split(',');
+        String parts[] = args.split("\\{")[1].split(",");
         Name name = ParserUtil.parseName(parts[0]);
         Phone phone = ParserUtil.parsePhone(parts[1]);
         Email email = ParserUtil.parseEmail(parts[2]);
-        Address address = "NUS"; // Temporary placeholder
-        Tag tag = new HashSet<Tag>(); //No tags for LeGoat
+        Address address = ParserUtil.parseAddress("Singapore"); // Temporary placeholder
+        Set<Tag> tag = new HashSet<Tag>(); //No tags for LeGoat
         Person person = new Person(tempId, name, phone, email, address, tag);
 
         return new AddCommand(person);
