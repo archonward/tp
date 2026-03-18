@@ -12,7 +12,7 @@ import seedu.address.model.assignment.AssignmentId;
  * Parses "get ..." commands.
  * Supports:
  * - get /assignments
- * - get /assignments <assignmentId>
+ * - get /assignments assignmentId
  */
 public class GetAssignmentCommandParser implements Parser<Command> {
 
@@ -25,7 +25,8 @@ public class GetAssignmentCommandParser implements Parser<Command> {
         String trimmed = args.trim();
 
         if (trimmed.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetAssignmentsCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    GetAssignmentsCommand.MESSAGE_USAGE));
         }
 
         String[] parts = trimmed.split("\\s+");
@@ -41,11 +42,13 @@ public class GetAssignmentCommandParser implements Parser<Command> {
                 return new GetAssignmentCommand(new AssignmentId(parts[1]));
             }
 
-        } else   {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetAssignmentsCommand.MESSAGE_USAGE));
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    GetAssignmentsCommand.MESSAGE_USAGE));
         }
 
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetAssignmentsCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                GetAssignmentsCommand.MESSAGE_USAGE));
     }
 }

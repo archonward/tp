@@ -26,6 +26,9 @@ public class AddAssignmentCommand extends Command {
 
     private final Assignment toAdd;
 
+    /**
+     * Creates an AddCommand to add the specified {@code Assignment}
+     */
     public AddAssignmentCommand(Assignment assignment) {
         requireNonNull(assignment);
         this.toAdd = assignment;
