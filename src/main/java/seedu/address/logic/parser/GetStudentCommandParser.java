@@ -8,9 +8,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.StudentId;
 
 /**
- * Parses "get ..." commands.
+ * Parses {@code get} commands for retrieving a student by student ID.
  * Supports:
- * - get /students <studentId>
+ * <ul>
+ *   <li>{@code get /students <studentId>}</li>
+ * </ul>
  */
 public class GetStudentCommandParser implements Parser<Command> {
 

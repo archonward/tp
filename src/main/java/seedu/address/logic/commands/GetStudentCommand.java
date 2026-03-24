@@ -29,11 +29,23 @@ public class GetStudentCommand extends Command {
 
     private final StudentId studentId;
 
+    /**
+     * Creates a {@code GetStudentCommand} for the given student id.
+     *
+     * @param studentId The student id of the student to retrieve.
+     */
     public GetStudentCommand(StudentId studentId) {
         requireNonNull(studentId);
         this.studentId = studentId;
     }
 
+    /**
+     * Executes the command and returns the matching student.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return A {@code CommandResult} containing the retrieved student's details.
+     * @throws CommandException If no student with the given student id is found.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -56,6 +68,12 @@ public class GetStudentCommand extends Command {
         return new CommandResult(String.format(MESSAGE_GOT_PERSON_SUCCESS, Messages.format(personToGet)));
     }
 
+    /**
+     * Returns true if both commands have the same student id.
+     *
+     * @param other The object to compare against.
+     * @return {@code true} if this command is equal to the other object, {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -70,6 +88,11 @@ public class GetStudentCommand extends Command {
         return studentId.equals(otherGetStudentCommand.studentId);
     }
 
+    /**
+     * Returns a string representation of this command.
+     *
+     * @return A string representation of this command.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)
