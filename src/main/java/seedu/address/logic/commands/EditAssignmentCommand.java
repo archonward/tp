@@ -24,7 +24,7 @@ public class EditAssignmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " /assignment: Edits the details of an assignment \n"
             + "Format: edit /assignment <assignmentId> {<label>; <group>; <dueDate>} \n"
-            + "Example: edit /assignment 1 {A-Testing; Sec3A; 2026-02-30}";
+            + "Example: edit /assignment A1 {A-Testing; Sec3A; 2026-04-30}";
 
     public static final String MESSAGE_EDIT_ASSIGNMENT_SUCCESS = "Edited Assignment: %s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -68,7 +68,10 @@ public class EditAssignmentCommand extends Command {
         Assignment assignmentToEdit = maybe.get();
         Assignment editedAssignment = createEditedAssignment(assignmentToEdit, editAssignmentDescriptor);
 
-        boolean duplicate = model.getAssignmentList().stream().anyMatch(a ->
+        // Excludes the current assignment being edited from the duplicate check
+        boolean duplicate = model.getAssignmentList().stream()
+                .filter(a -> a.getAssignmentId().equals(assignmentToEdit.getAssignmentId()))
+                .anyMatch(a ->
                         a.getLabel().equals(editedAssignment.getLabel())
                                 && a.getGroup().equals(editedAssignment.getGroup())
                                 && a.getDueDate().equals(editedAssignment.getDueDate())

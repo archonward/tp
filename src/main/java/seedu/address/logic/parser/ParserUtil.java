@@ -168,7 +168,7 @@ public class ParserUtil {
     }
 
     /**
-     * Prases a {@code String group} into a {@code Group}.
+     * Parses a {@code String group} into a {@code Group}.
      */
     public static Group parseGroup(String group) throws ParseException {
         requireNonNull(group);
