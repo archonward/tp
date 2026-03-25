@@ -1,16 +1,21 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddAssignmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.assignment.DueDate;
+import seedu.address.model.assignment.Group;
 import seedu.address.model.assignment.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -158,9 +163,22 @@ public class ParserUtil {
      *
      * For MVP: allow empty string.
      */
-    public static String parseGroup(String group) {
+    public static String parseGroupAsStr(String group) {
         requireNonNull(group);
         return group.trim();
+    }
+
+    /**
+     * Prases a {@code String group} into a {@code Group}.
+     */
+    public static Group parseGroup(String group) throws ParseException {
+        requireNonNull(group);
+        String trimmed = group.trim();
+        if (!Group.isValidGroup(trimmed)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Group(trimmed);
     }
 
     /**
@@ -183,5 +201,69 @@ public class ParserUtil {
         requireNonNull(studentId);
         String trimmedStudentId = studentId.trim();
         return new StudentId(trimmedStudentId);
+    }
+
+    /**
+     * Parses a {@Code String raw} into a List of 3 Strings, split by ';' and enclosed in '{}'.
+     */
+    public static List<String> parseTuple3(String raw) throws ParseException {
+        String s = raw.trim();
+
+        if (!s.startsWith("{") || !s.endsWith("}")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAssignmentCommand.MESSAGE_USAGE));
+        }
+
+        String inside = s.substring(1, s.length() - 1).trim();
+        if (inside.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAssignmentCommand.MESSAGE_USAGE));
+        }
+
+        String[] tokens = inside.split(";", -1);
+        if (tokens.length != 3) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAssignmentCommand.MESSAGE_USAGE));
+        }
+
+        List<String> out = new ArrayList<>();
+        for (String t : tokens) {
+            out.add(t.trim());
+        }
+
+        if (out.get(0).isEmpty() || out.get(2).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAssignmentCommand.MESSAGE_USAGE));
+        }
+
+        return out;
+    }
+
+    public static List<String> parseTuple3AllowEmpty(String raw) throws ParseException {
+        String s = raw.trim();
+
+        if (!s.startsWith("{") || !s.endsWith("}")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAssignmentCommand.MESSAGE_USAGE));
+        }
+
+        String inside = s.substring(1, s.length() - 1).trim();
+        if (inside.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAssignmentCommand.MESSAGE_USAGE));
+        }
+
+        String[] tokens = inside.split(";", -1);
+        if (tokens.length != 3) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAssignmentCommand.MESSAGE_USAGE));
+        }
+
+        List<String> out = new ArrayList<>();
+        for (String t : tokens) {
+            out.add(t.trim());
+        }
+
+        return out;
     }
 }

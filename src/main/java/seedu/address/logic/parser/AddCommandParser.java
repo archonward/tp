@@ -37,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(matcher.group("name"));
         Phone phone = ParserUtil.parsePhone(matcher.group("phone"));
         Email email = ParserUtil.parseEmail(matcher.group("email"));
-        String group = ParserUtil.parseGroup(matcher.group("group"));
+        String group = ParserUtil.parseGroupAsStr(matcher.group("group"));
         Person person = new Person(tempId, name, phone, email, group);
 
         return new AddCommand(person);

@@ -104,13 +104,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseGroup_validValueWithoutWhitespace_returnsGroup() {
-        assertEquals(VALID_GROUP, ParserUtil.parseGroup(VALID_GROUP));
+        assertEquals(VALID_GROUP, ParserUtil.parseGroupAsStr(VALID_GROUP));
     }
 
     @Test
     public void parseGroup_validValueWithWhitespace_returnsTrimmedGroup() {
         String groupWithWhitespace = WHITESPACE + VALID_GROUP + WHITESPACE;
-        assertEquals(VALID_GROUP, ParserUtil.parseGroup(groupWithWhitespace));
+        assertEquals(VALID_GROUP, ParserUtil.parseGroupAsStr(groupWithWhitespace));
     }
 
     @Test
