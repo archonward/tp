@@ -35,9 +35,8 @@ import seedu.address.model.milestone.StudentMilestoneView;
 import seedu.address.model.milestone.StudentMilestones;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
-import seedu.address.testutil.PersonBuilder;
-
 import javafx.collections.FXCollections;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
 
