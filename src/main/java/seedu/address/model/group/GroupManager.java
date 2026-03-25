@@ -1,10 +1,11 @@
 package seedu.address.model.group;
 
+import seedu.address.model.group.exceptions.AlreadyInGroupException;
+import seedu.address.model.person.StudentId;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-
-import seedu.address.model.group.exceptions.GroupAlreadyExistsException;
 
 /**
  * Manages the list of groups in the application.
@@ -27,6 +28,7 @@ public class GroupManager {
     public GroupManager() {
         this.groups = new ArrayList<>();
     }
+
     /**
      * Initialises the group manager by loading groups from storage,
      * or creating a new set of groups if no storage is found.
@@ -54,7 +56,9 @@ public class GroupManager {
      */
     public void addGroup(Group g) {
         requireNonNull(g);
-        groups.add(g);
+        if (!validateAddGroup(g)) {
+            groups.add(g);
+        }
     }
 
     /**
@@ -78,6 +82,40 @@ public class GroupManager {
             if (g.getGroupName().equals(group.getGroupName())) {
                 groups.remove(g);
                 return;
+            }
+        }
+    }
+
+    /**
+     * Adds studentId to group, ignores if student already in group
+     * @param g group to add studentId
+     * @param id target studentId
+     */
+    public void addStudentToGroup(Group g, StudentId id) {
+        for (Group group : groups) {
+            try {
+                if (g.getGroupName().equals(group.getGroupName())) {
+                    group.addStudent(id);
+                }
+            } catch (AlreadyInGroupException e) {
+                // do nothing
+            }
+        }
+    }
+
+    /**
+     * remove studentId to group
+     * @param g group to add studentId
+     * @param id target studentId
+     */
+    public void removeStudentFromGroup(Group g, StudentId id) {
+        for (Group group : groups) {
+            try {
+                if (g.getGroupName().equals(group.getGroupName())) {
+                    group.removeStudent(id);
+                }
+            } catch (AlreadyInGroupException e) {
+                //do nothing
             }
         }
     }

@@ -22,7 +22,11 @@ public class StudentList {
         this.list = new ArrayList<>();
     }
 
-    public StudentList(ArrayList<StudentId> students)  {
+    /**
+     * Constructs a filled {@code StudentList}
+     * @param students studentId to fill
+     */
+    public StudentList(ArrayList<StudentId> students) {
         this.list = new ArrayList<>();
         for (StudentId studentId: students) {
             this.list.add(studentId);

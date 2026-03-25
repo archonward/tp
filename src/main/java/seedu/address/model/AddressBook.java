@@ -11,8 +11,10 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentBook;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupManager;
+import seedu.address.model.group.exceptions.AlreadyInGroupException;
 import seedu.address.model.milestone.MilestoneStore;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -154,21 +156,41 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     // ==================== groups ====================
 
+    /**
+     * Adds a group to the group manager
+     * @param group group to be added
+     */
     public void addGroup(Group group) {
         requireNonNull(group);
         groups.addGroup(group);
     }
 
+    /**
+     * Removes given group from group manager
+     * @param group group to be removed
+     */
     public void removeGroup(Group group) {
         requireNonNull(group);
         groups.removeGroup(group);
     }
 
+    /**
+     * Checks if there are duplicate groups
+     * @param group group to be checked
+     * @return true if exists and false otherwise
+     */
     public boolean hasGroup(Group group) {
         requireNonNull(group);
         return groups.validateAddGroup(group);
     }
 
+    public void addStudentToGroup(Group g, StudentId id) {
+        groups.addStudentToGroup(g, id);
+    }
+
+    public void removeStudentFromGroup(Group g, StudentId id) {
+        groups.removeStudentFromGroup(g, id);
+    }
 
     @Override
     public ObservableList<Person> getPersonList() {

@@ -22,7 +22,7 @@ public class Group {
      * @throws NullPointerException if {@code name} is null.
      */
     public Group(String name) {
-        this.name= new GroupName(name);
+        this.name = new GroupName(name);
         this.studentIds = new StudentList();
     }
 

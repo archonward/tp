@@ -1,14 +1,15 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupName;
 import seedu.address.model.group.StudentList;
 import seedu.address.model.person.StudentId;
-
-import java.util.ArrayList;
 
 /**
  * Jackson-friendly version of {@link Group}.
@@ -20,6 +21,9 @@ public class JsonAdaptedGroup {
     private final String name;
     private final ArrayList<StudentId> students;
 
+    /**
+     * Constructs a {@code JsonAdaptedGroup} with the given group details.
+     */
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("name") String name,
                             @JsonProperty("students") ArrayList<StudentId> students) {
@@ -27,19 +31,29 @@ public class JsonAdaptedGroup {
         this.students = students;
     }
 
+    /**
+     * Converts a given {@code Group} into this class for Jackson use.
+     */
     public JsonAdaptedGroup(Group source) {
         name = source.getGroupName();
         students = source.getStudentIds();
     }
 
+    /**
+     * Converts this Jackson-friendly adapted group object into the model's {@code Group} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted group.
+     */
     public Group toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, GroupName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GroupName.class.getSimpleName()));
         }
         final GroupName modelName = new GroupName(name);
 
         if (students == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentList.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentList.class.getSimpleName()));
         }
 
         final StudentList modelStudentList = new StudentList(students);
