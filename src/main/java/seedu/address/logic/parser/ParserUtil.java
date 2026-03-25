@@ -14,9 +14,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.assignment.DueDate;
-import seedu.address.model.assignment.Group;
-import seedu.address.model.assignment.Label;
 import seedu.address.model.group.Group;
+import seedu.address.model.assignment.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -139,14 +138,6 @@ public class ParserUtil {
             throw new ParseException(AssignmentId.MESSAGE_CONSTRAINTS);
         }
         return new AssignmentId(trimmed);
-    }
-
-    /**
-     * Parses a {@code String group} into a {@code Group}.
-     */
-    public static Group parseGroup(String group) {
-        requireNonNull(group);
-        return new Group(group.trim());
     }
 
     /**
