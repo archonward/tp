@@ -56,7 +56,7 @@ public class GroupManager {
      */
     public void addGroup(Group g) {
         requireNonNull(g);
-        if (!validateAddGroup(g)) {
+        if (validateAddGroup(g)) {
             groups.add(g);
         }
     }
@@ -65,10 +65,15 @@ public class GroupManager {
      * Validates that no group with the given name already exists.
      *
      * @param group The name to check.
+     * @return true if no duplicate is found, false if duplicate
      */
     public boolean validateAddGroup(Group group) {
-        requireNonNull(group);
-        return groups.contains(group);
+        for (Group g : groups) {
+            if (g.getGroupName().equals(group.getGroupName())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

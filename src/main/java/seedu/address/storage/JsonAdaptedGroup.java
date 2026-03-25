@@ -19,14 +19,14 @@ public class JsonAdaptedGroup {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Group's %s field is missing!";
 
     private final String name;
-    private final ArrayList<StudentId> students;
+    private final ArrayList<String> students;
 
     /**
      * Constructs a {@code JsonAdaptedGroup} with the given group details.
      */
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("name") String name,
-                            @JsonProperty("students") ArrayList<StudentId> students) {
+                            @JsonProperty("students") ArrayList<String> students) {
         this.name = name;
         this.students = students;
     }
@@ -35,8 +35,12 @@ public class JsonAdaptedGroup {
      * Converts a given {@code Group} into this class for Jackson use.
      */
     public JsonAdaptedGroup(Group source) {
-        name = source.getGroupName();
-        students = source.getStudentIds();
+        name = source.getGroupName().toString();
+        students = new ArrayList<>();
+
+        for (StudentId id : source.getStudentIds()) {
+            students.add(id.toString());
+        }
     }
 
     /**
@@ -56,7 +60,13 @@ public class JsonAdaptedGroup {
                     StudentList.class.getSimpleName()));
         }
 
-        final StudentList modelStudentList = new StudentList(students);
+        final ArrayList<StudentId> studentIds = new ArrayList<>();
+
+        for (String id : students) {
+            studentIds.add(new StudentId(id));
+        }
+
+        final StudentList modelStudentList = new StudentList(studentIds);
 
         return new Group(modelName, modelStudentList);
     }

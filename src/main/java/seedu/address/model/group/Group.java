@@ -78,4 +78,9 @@ public class Group {
         requireNonNull(id);
         studentIds.removeStudent(id);
     }
+
+    @Override
+    public String toString() {
+        return this.getGroupName();
+    }
 }

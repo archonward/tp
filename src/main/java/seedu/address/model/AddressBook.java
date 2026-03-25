@@ -11,7 +11,6 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentBook;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupManager;
-import seedu.address.model.group.exceptions.AlreadyInGroupException;
 import seedu.address.model.milestone.MilestoneStore;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
@@ -181,7 +180,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasGroup(Group group) {
         requireNonNull(group);
-        return groups.validateAddGroup(group);
+        return !groups.validateAddGroup(group);
     }
 
     public void addStudentToGroup(Group g, StudentId id) {
