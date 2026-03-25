@@ -247,7 +247,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-
+        @Override
+        public void setAssignment(Assignment target, Assignment editedAssignment) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
