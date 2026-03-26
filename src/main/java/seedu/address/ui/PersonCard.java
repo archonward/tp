@@ -1,18 +1,14 @@
 package seedu.address.ui;
 
+import java.util.Set;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
 import seedu.address.model.group.Group;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.Flow;
+import seedu.address.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -53,7 +49,7 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText("Phone: " + person.getPhone().value);
         email.setText("Email: " + person.getEmail().value);
-        Set<Group> groupSet = new HashSet<>(Collections.singleton(person.getGroup()));
+        Set<Group> groupSet = person.getGroups();
         groupSet.stream()
                 .forEach(g -> {
                     Label label = new Label(g.getGroupName().toString());
