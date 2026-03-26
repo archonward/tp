@@ -161,7 +161,7 @@ public class EditCommand extends Command {
         }
 
         public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+            return Optional.ofNullable(name).filter(n -> !n.fullName.isEmpty());
         }
 
         public void setPhone(Phone phone) {
@@ -169,7 +169,7 @@ public class EditCommand extends Command {
         }
 
         public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+            return Optional.ofNullable(phone).filter(p -> !p.value.isEmpty());
         }
 
         public void setEmail(Email email) {
@@ -177,15 +177,19 @@ public class EditCommand extends Command {
         }
 
         public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+            return Optional.ofNullable(email).filter(e -> !e.value.isEmpty());
         }
 
         public void setGroups(Set<Group> groups) {
-            this.groups = (groups != null) ? new HashSet<>(groups) : null;
+            this.groups = (groups != null) ? (!groups.isEmpty())
+                        ? new HashSet<>(groups)
+                        : null
+                        : null;
         }
 
         public Optional<Set<Group>> getGroups() {
-            return (groups != null) ? Optional.of(Collections.unmodifiableSet(groups)) : Optional.empty();
+            return (groups != null) ? Optional.of(Collections.unmodifiableSet(groups))
+                                                        : Optional.empty();
         }
 
         @Override
