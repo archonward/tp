@@ -27,7 +27,8 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final List<String> groups = new ArrayList<>();
+    private final String group;
+    private final List<JsonAdaptedGroup> groups = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -37,14 +38,26 @@ class JsonAdaptedPerson {
                              @JsonProperty("name") String name,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
-                             @JsonProperty("groups") List<String> groups) {
+                             @JsonProperty("group") String group,
+                             @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
         this.studentId = studentId;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.group = group;
         if (groups != null) {
             this.groups.addAll(groups);
+        } else if (group != null && !group.trim().isEmpty()) {
+            this.groups.add(new JsonAdaptedGroup(group.trim(), new ArrayList<>()));
         }
+    }
+
+    public JsonAdaptedPerson(String studentId,
+                             String name,
+                             String phone,
+                             String email,
+                             List<JsonAdaptedGroup> groups) {
+        this(studentId, name, phone, email, null, groups);
     }
 
     /**
@@ -55,6 +68,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        group = null;
         groups.addAll(source.getGroups().stream()
                 .map(g -> g.getGroupName().toString())
                 .collect(Collectors.toList()));
