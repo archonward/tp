@@ -20,9 +20,9 @@ import seedu.address.model.person.StudentId;
  */
 public class AddCommandParser implements Parser<AddCommand> {
     private static final Pattern ADD_PATTERN = Pattern.compile(
-            "^\\s*/students\\s*\\{\\s*(?<name>[^,{}]+?)\\s*;\\s*(?<phone>[^,{}]+?)\\s*;"
+            "^\\s*/students\\s*\\{\\s*(?<name>[^,;{}]+?)\\s*;\\s*(?<phone>[^,;{}]+?)\\s*;"
                     +
-                    "\\s*(?<email>[^,{}]+?)\\s*;\\s*(?<group>[^{}]+?)\\s*}\\s*$"
+                    "\\s*(?<email>[^,;{}]+?)\\s*;\\s*(?<group>[^;{}]+?)\\s*}\\s*$"
     );
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
