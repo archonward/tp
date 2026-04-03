@@ -147,7 +147,7 @@ public class UniqueAssignmentListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> uniqueAssignmentList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                uniqueAssignmentList.asUnmodifiableObservableList().remove(0));
     }
 }
