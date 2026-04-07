@@ -282,7 +282,6 @@ public class AddCommandTest {
         public void setFilteredPersonsAndAssignmentsByGroups(GroupName name) {
             throw new AssertionError("This method should not be called.");
         }
-
     }
 
     /**
