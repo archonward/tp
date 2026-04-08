@@ -398,8 +398,4 @@ public class ModelManager implements Model {
         requireNonNull(g);
         addressBook.removeGroup(g);
     }
-
-
-
-
 }
