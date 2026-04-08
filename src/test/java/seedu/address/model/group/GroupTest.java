@@ -27,11 +27,13 @@ public class GroupTest {
     public void constructor_groupNameAndStudentList_storesGivenObjects() {
         GroupName groupName = new GroupName("Tutorial-1");
         StudentList studentList = new StudentList();
+        AssignmentList assignmentList = new AssignmentList();
 
-        Group group = new Group(groupName, studentList);
+        Group group = new Group(groupName, studentList, assignmentList);
 
         assertSame(groupName, group.getGroupName());
         assertSame(studentList, group.getStudentIds());
+        assertSame(assignmentList, group.getAssignmentIds());
     }
 
     @Test

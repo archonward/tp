@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalAssignments.getTypicalAssignmentBook
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditAssignmentCommand.EditAssignmentDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -32,7 +33,7 @@ public class EditAssignmentCommandTest {
         Assignment assignmentToEdit = model.getAssignmentList().get(0);
         Assignment editedAssignment = new AssignmentBuilder(assignmentToEdit)
                 .withLabel("A-Edited")
-                .withGroup("Sec4A")
+                .withGroups("Sec4A")
                 .withDueDate("2026-05-01")
                 .build();
 
@@ -40,7 +41,8 @@ public class EditAssignmentCommandTest {
         EditAssignmentCommand editAssignmentCommand = new EditAssignmentCommand(assignmentToEdit.getAssignmentId(),
                 descriptor);
 
-        String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
+        String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS,
+                Messages.formatA(editedAssignment));
         Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
@@ -58,7 +60,8 @@ public class EditAssignmentCommandTest {
         EditAssignmentCommand editAssignmentCommand = new EditAssignmentCommand(assignmentToEdit.getAssignmentId(),
                 descriptor);
 
-        String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
+        String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS,
+                Messages.formatA(editedAssignment));
         Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
@@ -74,7 +77,8 @@ public class EditAssignmentCommandTest {
         EditAssignmentCommand editAssignmentCommand = new EditAssignmentCommand(assignmentToEdit.getAssignmentId(),
                 descriptor);
 
-        String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
+        String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS,
+                Messages.formatA(editedAssignment));
         Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
@@ -94,7 +98,8 @@ public class EditAssignmentCommandTest {
         EditAssignmentCommand editAssignmentCommand = new EditAssignmentCommand(assignmentToEdit.getAssignmentId(),
                 descriptor);
 
-        String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
+        String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS,
+                Messages.formatA(editedAssignment));
         Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
