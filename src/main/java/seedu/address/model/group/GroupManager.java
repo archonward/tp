@@ -3,6 +3,7 @@ package seedu.address.model.group;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.group.exceptions.AlreadyInGroupException;
@@ -66,7 +67,7 @@ public class GroupManager {
     public void removeGroup(Group group) {
         for (Group g : groups) {
             if (g.getGroupName().equals(group.getGroupName())
-                    && g.isAssignmentListEmpty()) { // && g.isStudentListEmpty()
+                    && g.isAssignmentListEmpty() && g.isStudentListEmpty()) {
                 groups.remove(g);
                 return;
             }
@@ -139,5 +140,10 @@ public class GroupManager {
                 //do nothing
             }
         }
+      
+    public void setGroups(List<Group> group) {
+        requireNonNull(group);
+        groups.clear();
+        groups.addAll(group);
     }
 }

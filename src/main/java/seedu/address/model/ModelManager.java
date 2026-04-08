@@ -408,7 +408,4 @@ public class ModelManager implements Model {
     public void removeAssignmentFromGroup(Group g, AssignmentId id) {
         addressBook.removeAssignmentFromGroup(g, id);
     }
-
-
-
 }

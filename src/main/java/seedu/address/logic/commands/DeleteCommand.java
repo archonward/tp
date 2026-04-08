@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -8,6 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 
@@ -54,6 +57,18 @@ public class DeleteCommand extends Command {
         }
 
         model.deletePerson(personToDelete);
+        for (Group g : personToDelete.getGroups()) {
+            model.removeStudentFromGroup(g, personToDelete.getStudentId());
+
+            boolean hasNoAssignments = model.getAssignmentList().stream()
+                    .noneMatch(a -> g.equals(a.getGroup()));
+
+            if (hasNoAssignments) {
+                model.removeGroup(g);
+            }
+        }
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
