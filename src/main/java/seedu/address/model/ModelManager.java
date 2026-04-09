@@ -370,7 +370,7 @@ public class ModelManager implements Model {
         List<Assignment> matchingAssignments = new ArrayList<>();
 
         for (Assignment assignment : getAssignmentList()) {
-            if (student.getGroups().contains(assignment.getGroup())) {
+            if (student.getGroups().stream().anyMatch(assignment.getGroups()::contains)) {
                 matchingAssignments.add(assignment);
             }
         }
@@ -416,7 +416,6 @@ public class ModelManager implements Model {
     public void setFilteredPersonsAndAssignmentsByGroups(GroupName name) {
         requireNonNull(name);
 
-        System.out.println(name);
         Group matchingGroup = null;
         for (Group g : this.groups) {
             if (g.getGroupName().equals(name)) {
@@ -429,16 +428,18 @@ public class ModelManager implements Model {
             ArrayList<StudentId> studentIds =
                     matchingGroup.getStudentIds().getStudentList();
 
+            ArrayList<AssignmentId> assignmentIds =
+                    matchingGroup.getAssignmentIds().getAssignmentList();
+
             filteredPersons.setPredicate(person ->
                     studentIds.contains(person.getStudentId())
             );
+
+            filteredAssignments.setPredicate(assignment ->
+                    assignmentIds.contains(assignment.getAssignmentId()));
         } else {
             filteredPersons.setPredicate(person -> false);
+            filteredAssignments.setPredicate(assignment -> false);
         }
-
-        filteredAssignments.setPredicate(assignment ->
-                assignment.getGroup().getGroupName().equals(name)
-        );
-
     }
 }
