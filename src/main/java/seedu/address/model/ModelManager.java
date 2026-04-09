@@ -39,7 +39,6 @@ public class ModelManager implements Model {
     private final FilteredList<Assignment> filteredAssignments;
     private final ArrayList<Group> groups;
     private final MilestoneResolver milestoneResolver = new MilestoneResolver();
-    private final ArrayList<Group> groups;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -401,6 +400,16 @@ public class ModelManager implements Model {
     public void removeGroup(Group g) {
         requireNonNull(g);
         addressBook.removeGroup(g);
+    }
+
+    @Override
+    public void addAssignmentToGroup(Group g, AssignmentId id) {
+        addressBook.addAssignmentToGroup(g, id);
+    }
+
+    @Override
+    public void removeAssignmentFromGroup(Group g, AssignmentId id) {
+        addressBook.removeAssignmentFromGroup(g, id);
     }
 
     @Override
