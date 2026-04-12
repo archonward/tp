@@ -597,12 +597,12 @@ Preconditions: Target Assignment already exists in the directory.
     Use case ends.
 
 **Extensions**
-* 5a. Invalid label or duplicate label
-    * 5a1. System shows an error message
+* 4a. Invalid label or duplicate label
+    * 4a1. System shows an error message
 
       Use case resumes at step 4.
-* 6a. Invalid group, dueDate or order
-    * 6a1. System shows an error message
+* 5a. Invalid group, dueDate or order
+    * 5a1. System shows an error message
 
       Use case resumes at step 4.
 
