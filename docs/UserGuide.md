@@ -243,6 +243,7 @@ Examples:
 
 * `edit /students S2 {John Doe; 98765432; johnd@mail.com; Sec3B}`
 * `edit /students S2 {John; ; ;}`
+* `edit /students S2 {; 91234567; ;}`
 
 > **Tip:**
 > Use empty fields carefully. Keep the semicolons in place so LeTutor can tell which field you are skipping.
@@ -264,6 +265,9 @@ Format: `delete /students STUDENT_ID`
 Example:
 
 * `delete /students S3`
+
+> **Note:** Entering a `STUDENT_ID` that does not exist will reset the student list to show all available students
+{: .note}
 
 > **Warning:**
 > Deletion is permanent and cannot be undone within the app.
@@ -325,6 +329,7 @@ Rules:
 
 * The `ASSIGNMENT_ID` identifies which assignment to edit.
 * You may leave fields empty if you do not want to change them.
+* Semicolons `;` must still be typed to indicate the fields.
 * The groups field supports multiple groups separated by commas.
 
 Examples:
@@ -350,9 +355,12 @@ Example:
 
 * `delete /assignments A2`
 
+> **Note:** Entering an `ASSIGNMENT_ID` that does not exist will reset the assignment list to show all available assignments
+{: .note}
+
 > **Warning:**
 > Deleting an assignment removes it from the system permanently.
-{: .note}
+{: .warning}
 
 **Expected output:** The assignment is removed and a confirmation message is shown.
 
@@ -382,6 +390,9 @@ Shows all students currently in LeTutor.
 Format: `get /students`
 {: .format}
 
+> **Note:** There should not be any input after the `get /students` command.
+{: .note}
+
 **Expected output:** The student list resets to show all students.
 
 ---
@@ -393,7 +404,10 @@ Shows all assignments currently in LeTutor.
 Format: `get /assignments`
 {: .format}
 
-**Expected output:** The assignment list shows all assignments.
+> **Note:** There should not be any input after the `get /assignments` command.
+{: .note}
+
+**Expected output:** The assignment list resets to show all assignments.
 
 ---
 
@@ -431,9 +445,11 @@ Rules:
 
 Example:
 
-* `get /assignments A1`
+* `get /assignments A2`
 
 **Expected output:** The selected assignment is shown in the assignment panel.
+
+![Get assignment result](images/get-assignment.png)
 
 ---
 
@@ -644,7 +660,6 @@ A: Yes. Separate group names with commas when adding or editing an assignment.
 ---
 
 ## Command Summary
-The list below is in alphabetical order:
 
 | Action                     | Format                                                                     | Example                                                         |
 |----------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------|

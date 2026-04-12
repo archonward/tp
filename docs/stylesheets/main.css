@@ -207,14 +207,14 @@ blockquote.note strong:first-child {
 
 blockquote.warning {
   border: 1px solid #000000;
-  border-left: 5px solid #2244aa;
+  border-left: 5px solid #654a1c;
   padding: 12px 12px;
   margin: 12px 0;
   border-radius: 6px;
 }
 
 blockquote.warning strong:first-child {
-  color: #2244aa;
+  color: #654a1c;
 }
 
 blockquote.caution {
