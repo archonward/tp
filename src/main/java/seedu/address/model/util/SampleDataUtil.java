@@ -55,32 +55,32 @@ public class SampleDataUtil {
 
     public static Group[] getSampleGroups() {
         return new Group[] {
-                new Group(new GroupName("Math"),
-                        new StudentList(new ArrayList<>(Arrays.asList(
-                                new StudentId("S1"), new StudentId("S2"),
-                                new StudentId("S3"), new StudentId("S6")
-                        ))),
-                        new AssignmentList(new ArrayList<>(Arrays.asList(
-                                new AssignmentId("A1")
-                        )))),
+            new Group(new GroupName("Math"),
+                new StudentList(new ArrayList<>(Arrays.asList(
+                    new StudentId("S1"), new StudentId("S2"),
+                    new StudentId("S3"), new StudentId("S6")
+                ))),
+                new AssignmentList(new ArrayList<>(Arrays.asList(
+                    new AssignmentId("A1")
+                )))),
 
-                new Group(new GroupName("English"),
-                        new StudentList(new ArrayList<>(Arrays.asList(
-                                new StudentId("S4"), new StudentId("S5")
-                        ))),
-                        new AssignmentList(new ArrayList<>(Arrays.asList(
-                                new AssignmentId("A2")
-                        )))),
+            new Group(new GroupName("English"),
+                new StudentList(new ArrayList<>(Arrays.asList(
+                    new StudentId("S4"), new StudentId("S5")
+                ))),
+                new AssignmentList(new ArrayList<>(Arrays.asList(
+                    new AssignmentId("A2")
+                )))),
         };
     }
 
     public static Assignment[] getSampleAssignments() {
         return new Assignment[]{
-                new Assignment(new AssignmentId("A1"),
-                        new Label("Math Homework 1"), getGroupSet("Math"), new DueDate("2026-04-22")),
+            new Assignment(new AssignmentId("A1"),
+                new Label("Math Homework 1"), getGroupSet("Math"), new DueDate("2026-04-22")),
 
-                new Assignment(new AssignmentId("A2"),
-                        new Label("English Test"), getGroupSet("English"), new DueDate("2026-04-30"))
+            new Assignment(new AssignmentId("A2"),
+                new Label("English Test"), getGroupSet("English"), new DueDate("2026-04-30"))
         };
     }
 
