@@ -8,7 +8,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.SetMilestoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.AssignmentId;
-import seedu.address.model.assignment.DueDate;
 import seedu.address.model.milestone.CompletedAt;
 import seedu.address.model.milestone.MilestoneStatus;
 import seedu.address.model.person.StudentId;
@@ -21,7 +20,7 @@ public class SetMilestoneCommandParser implements Parser<SetMilestoneCommand> {
     private static final String STUDENTS_PREFIX = "/students";
     private static final String MILESTONES_SEGMENT = "/milestones";
     private static final String MESSAGE_COMPLETED_DATE_CONSTRAINTS =
-            "Completed date must be in the format YYYY-MM-DD";
+            "Completed date must be in the format YYYY-MM-DDTXXXXH";
 
     @Override
     public SetMilestoneCommand parse(String args) throws ParseException {
@@ -114,10 +113,10 @@ public class SetMilestoneCommandParser implements Parser<SetMilestoneCommand> {
                         SetMilestoneCommand.MESSAGE_USAGE));
             }
             String completedDate = rightTokens[2].trim();
-            if (!completedDate.matches("\\d{4}-\\d{2}-\\d{2}") || !DueDate.isValidDate(completedDate)) {
+            if (!CompletedAt.isValidCompletedAt(completedDate)) {
                 throw new ParseException(MESSAGE_COMPLETED_DATE_CONSTRAINTS);
             }
-            return new CompletedAt(completedDate + "T0000H");
+            return new CompletedAt(completedDate);
         }
 
         throw new ParseException(String.format(

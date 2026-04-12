@@ -46,7 +46,7 @@ public class AddressBookParserTest {
                     + "If status is COMPLETED, COMPLETED_AT is required.\n"
                     + "Examples:\n"
                     + "set /students S1 /milestones A1 NOT_STARTED\n"
-                    + "set /students S1 /milestones A1 COMPLETED 2026-03-30";
+                    + "set /students S1 /milestones A1 COMPLETED 2026-03-30T1200H";
 
     private final AddressBookParser parser = new AddressBookParser();
 
@@ -123,7 +123,7 @@ public class AddressBookParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SET_MESSAGE_USAGE), (
                 ) -> parser.parseCommand("set /assignments A1"));
         assertThrows(ParseException.class,
-                "Completed date must be in the format YYYY-MM-DD", (
+                "Completed date must be in the format YYYY-MM-DDTXXXXH", (
                 ) -> parser.parseCommand("set /students S8 /milestones A1 COMPLETED 2026-05-32T0900H"));
     }
 
