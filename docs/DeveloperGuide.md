@@ -511,7 +511,8 @@ Preconditions: Target student already exists in the directory.
 1. Tutor <ins>searches for student (U2) </ins>.
 2. Tutor deletes student profile.
 3. Systems deletes the student and all related fields from this account.
-4. UI shows confirmation message "Student deleted."  
+4. UI shows confirmation message "Student deleted."
+
    Use case ends.
 
 ---
@@ -533,7 +534,8 @@ Preconditions: Tutor is signed in, Student exists, Predefined milestone exists f
 2.  Tutor navigates to the assignments/milestones progress section.
 3.  System displays all predefined assignments/milestones as status bubbles.
 4.  System shows the current status of each bubble (e.g., completed, pending, overdue).
-5.  Tutor reviews the student’s progress across all milestones.  
+5.  Tutor reviews the student’s progress across all milestones.
+
     Use case ends.
 
 **Extensions**
@@ -563,7 +565,8 @@ Preconditions: Tutor is signed in as Tutor, Target student exists, A predefined 
 2. Tutor selects a pending or overdue milestone bubble.
 3. Tutor marks the milestone as completed.
 4. System saves the updated milestone status.
-5. UI updates the bubble to show completed status.  
+5. UI updates the bubble to show completed status.
+
    Use case ends.
 
 **Extensions**
@@ -590,7 +593,8 @@ Preconditions: A predefined milestone exists with a due date, The milestone is n
 1. System checks milestone due dates periodically or when the student profile is accessed.
 2. System identifies milestones whose due dates have passed and are still incomplete.
 3. System changes the milestone status to overdue.
-4. UI updates the milestone bubble to show overdue status.  
+4. UI updates the milestone bubble to show overdue status.
+
    Use case ends.
 
 **Extensions**
@@ -618,7 +622,8 @@ Preconditions: Tutor is signed in as Tutor, Students and predefined milestones e
 1. Tutor opens the student management or progress overview page.
 2. Tutor views milestone statuses across multiple students.
 3. Tutor sees students with overdue milestone status.
-4. Tutor identifies which students are falling behind.  
+4. Tutor identifies which students are falling behind.
+
    Use case ends.
 
 **Extensions**
