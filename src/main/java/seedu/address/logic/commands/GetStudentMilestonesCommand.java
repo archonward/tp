@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.List;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -110,7 +113,11 @@ public class GetStudentMilestonesCommand extends Command {
      */
     private String formatCompletedAt(ResolvedMilestone resolvedMilestone) {
         String value = resolvedMilestone.getCompletedAt().getValue();
-        return value.isBlank() ? "-" : value;
+        return value.isBlank()
+                ? "-"
+                : LocalDateTime.parse(value, DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HHmm'H'")
+                .withResolverStyle(ResolverStyle.STRICT))
+                .format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
     }
 
     @Override
