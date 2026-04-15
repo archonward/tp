@@ -177,6 +177,10 @@ h6 {
    color: #88BDF2;
 }
 
+h6 {
+  font-weight: 650;
+}
+
 h3 code {
   color: #e83e8c !important;
 }
