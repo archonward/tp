@@ -13,9 +13,10 @@ pageNav: 3
 LeTutor is built for **tutors and educators** who need a fast way to manage **students**, **assignments**, and **milestone progress** without relying on spreadsheets or clicking through many menus.
 
 This guide is written for users who:
-- are comfortable using a computer and typing commands
-- want a clear step-by-step explanation of each feature
-- do not need programming knowledge to use the app
+- are comfortable using a computer and typing commands, and
+- want a clear step-by-step explanation of each feature.
+
+You do not need programming knowledge to use the app!
 
 ## What problem does LeTutor solve?
 
@@ -23,8 +24,8 @@ Keeping track of multiple students, class groups, assignment deadlines, and comp
 
 - **Manage students efficiently** — store student contact details and group memberships
 - **Manage assignments cleanly** — create assignments and assign them to one or more groups
-- **Track progress clearly** — view and update milestone completion per student
-- **Filter relevant information quickly** — find students by name or show only students and assignments belonging to a chosen group
+- **Track progress clearly** — view and update milestone completion for each student
+- **Filter relevant information quickly** — find students by name or show only students and assignments belonging to a given group
 
 ---
 
@@ -34,7 +35,7 @@ Keeping track of multiple students, class groups, assignment deadlines, and comp
 2. [Key Concepts](#key-concepts)
 3. [Features](#features)
    - [Notes about the command format](#notes-about-the-command-format)
-   - [Viewing help — `help`](#viewing-help--help)
+   - [Viewing help — `help`](#viewing-help-help)
    - [Adding a student — `add /students`](#adding-a-student-add-students)
    - [Editing a student — `edit /students`](#editing-a-student-edit-students)
    - [Deleting a student — `delete /students`](#deleting-a-student-delete-students)
@@ -97,6 +98,8 @@ java -jar letutor.jar
 
 ### UI Overview
 
+This section shows you the LeTutor User Interface (UI) and explains the key UI components.
+
 ![UI Overview](images/ui-overview.png)
 
 - **Command Box**: Where you enter commands to interact with the app.
@@ -118,11 +121,11 @@ With our CLI, you can enter text commands to store information and perform tasks
 #### Your first few LeTutor commands
 
 New to CLI? Don't worry, with practice you will definitely become comfortable using it.
-Here are some easy commands for you to get started with and get used to:
+Here are some easy commands for you to get started with.
 
 ###### 1. `help`!
 
-When you don't know how to do something, you would say "Help!". You can do this in LeTutor too! Simply type the command `help` in the LeTutor command box and press <kbd>Enter</kbd>. This will just trigger a pop-up that gives you a link back to this exact user guide, but the next few commands will be more useful.
+When you don't know how to do something, you would say "Help!". You can do this in LeTutor too! Simply type the command `help` in the LeTutor command box and press <kbd>Enter</kbd>. This will trigger a pop-up that gives you a link back to this exact user guide.
 
 ###### 2. Adding a student
 
@@ -153,7 +156,7 @@ After adding a student and an assignment, you can now mark the assignment as com
 set /students S1 /milestone A1 COMPLETED 2026-04-11 1600
 ```
 
-A confirmation message will be shown with the details of the milestone status you have just set. More information on the `set milestone` command can be found [here](#updating-a-milestone-set-students-milestones)
+A confirmation message will be shown with the details of the milestone status you have just set. To see the full details about setting milestones, read the [Update Milestone](#updating-a-milestone-set-students-milestones) section.
 
 ###### 5. Viewing the milestone status
 
@@ -167,11 +170,11 @@ A message showing you the milestone statuses of the student will be displayed in
 
 ###### 6. Deleting the student and assignment
 
-The tutorial is almost over, let's clean up LeTutor for your own personal use. Run the command
+The tutorial is almost over, let's clean up LeTutor for your own personal use. Run the command:
 ```
 delete /students S1
 ```
-followed by
+followed by:
 ```
 delete /assignments A1
 ```
@@ -198,7 +201,7 @@ Student IDs are automatically generated and appear in the format `S1`, `S2`, `S3
 
 ### Assignment
 
-An assignment stores:
+An assignment entry stores:
 
 1. Assignment ID
 2. Label
@@ -225,7 +228,7 @@ View-only computed status:
 
 * `OVERDUE`
 
-> **Note:** `OVERDUE` is not manually set. It appears automatically when the due date has passed and the milestone is still incomplete.
+> **Note:** `OVERDUE` is not manually set. It is computed automatically when the due date has passed and the milestone is still incomplete.
 {: .note}
 ---
 
@@ -251,11 +254,6 @@ View-only computed status:
 {: .note}
 
 > **Note:**
-> Multiple groups inside one field should be separated by commas.
-> Example: `Sec3A, Sec3B`
-{: .note}
-
-> **Note:**
 > Commands such as `help`, `list`, `clear`, and `exit` ignore extra text after them.
 {: .note}
 
@@ -266,7 +264,7 @@ View-only computed status:
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a pop-up containing the link to this user guide.
 
 Format: `help`
 {: .format}
@@ -297,11 +295,11 @@ Rules:
 
 * The phone number must be within 3-15 digits.
 * The email should contain `@`.
-* The name, phone, email, and group fields must not contain `;`.
-* The name must start with an alphanumeric character and may include whitespace, `.`,
-      `/`, `'`, and `-`.
-* The name is autoformatted to remove leading & trailing whitespaces, any consecutive whitespaces
-      are also formatted to a singular whitespace.
+* The name, phone, email, and group fields must not contain semicolons `;`.
+* The name must start with an alphanumeric character and may include whitespace, dots `.`,
+      slashes `/`, apostrophes `'`, and dashes `-`.
+* The name is autoformatted to remove leading and trailing whitespace. Any consecutive whitespace
+      is also formatted to a singular whitespace.
 * The groups field supports multiple groups separated by commas.
 
 Examples:
@@ -317,7 +315,7 @@ Examples:
 > Each student must have a unique phone number **and** a unique email address. Students are allowed to have the same name as long as both their phone and email are unique.
 {: .note}
 
-**Expected output:** The student appears in the list and a confirmation message is shown.
+**Expected output:** The student appears in the student list panel and a confirmation message is shown in the results box.
 
 ![Add student result](images/add-student.png)
 
@@ -343,6 +341,10 @@ Examples:
 * `edit /students S2 {John; ; ;}`
 * `edit /students S2 {; 91234567; ;}`
 
+> **Note:**
+> Editing fields overwrites the previous field value. If you want to add a new group to a student entry, you must include all desired groups in the edit command. Otherwise, you may leave the field empty to retain the previous value.
+{: .note}
+
 > **Tip:**
 > Use empty fields carefully. Keep the semicolons in place so LeTutor can tell which field you are skipping.
 {: .tip}
@@ -351,7 +353,7 @@ Examples:
 > Editing is permanent and cannot be undone within the app. There will be no confirmation step before the edit.
 {: .caution}
 
-**Expected output:** The student's details are updated and a confirmation message is shown.
+**Expected output:** The student's details are updated and a confirmation message is shown in the results box.
 
 ![Edit student result](images/edit-student.png)
 
@@ -368,14 +370,14 @@ Example:
 
 * `delete /students S3`
 
-> **Note:** If the ID does not exist, LeTutor does not delete anything and shows the full student list again.
+> **Note:** If the ID does not exist, LeTutor does not delete anything. If your student list panel was previously showing a filtered view, it will revert to showing the full student list.
 {: .note}
 
 > **Caution:**
 > Deletion is permanent and cannot be undone within the app. There will be no confirmation step before deletion.
 {: .caution}
 
-**Expected output:** The student is removed and a confirmation message is shown.
+**Expected output:** The student is removed and a confirmation message is shown in the results box.
 
 ![Delete student result](images/delete-student.png)
 
@@ -398,7 +400,7 @@ Format: `add /assignments {LABEL; GROUPS; DUE_DATE}`
 
 Rules:
 * Assignments can belong to more than one group.
-* The label and group fields must not contain `;`.
+* The label and group fields must not contain semicolons `;`.
 * The `GROUPS` field follows the same rules and formatting previously mentioned in [Add Students](#adding-a-student-add-students).
 * The `DUE_DATE` field must follow the specified format strictly.
 
@@ -411,7 +413,7 @@ Examples:
 > Use consistent group names across students and assignments as GROUPS are case-sensitive.
 {: .tip}
 
-**Expected output:** The assignment appears in the assignment list and a confirmation message is shown.
+**Expected output:** The assignment appears in the assignment list panel and a confirmation message is shown in the results box.
 
 ![Add assignment result](images/add-assignment.png)
 
@@ -437,13 +439,21 @@ Examples:
 * `edit /assignments A2 {Math Worksheet; Sec3A, Sec3B; 2026-05-01}`
 * `edit /assignments A3 {Quiz 2; ; }`
 
-**Expected output:** The assignment is updated and a confirmation message is shown.
+> **Note:**
+> Editing fields overwrites the previous field value. If you want to add a new group to an assignment entry, you must include all desired groups in the edit command. Otherwise, you may leave the field empty to retain the previous value.
+{: .note}
 
-![Edit assignment result](images/edit-assignment.png)
+> **Tip:**
+> Use empty fields carefully. Keep the semicolons in place so LeTutor can tell which field you are skipping.
+{: .tip}
 
 > **Caution:**
 > Editing is permanent and cannot be undone within the app. There will be no confirmation step before the edit.
 {: .caution}
+
+**Expected output:** The assignment is updated and a confirmation message is shown in the results box.
+
+![Edit assignment result](images/edit-assignment.png)
 
 ---
 
@@ -458,14 +468,14 @@ Example:
 
 * `delete /assignments A2`
 
-> **Note:** If the ID does not exist, LeTutor does not delete anything and shows the full assignment list again.
+> **Note:** If the ID does not exist, LeTutor does not delete anything. If your assignment list panel was previously showing a filtered view, it will revert to showing the full assignment list.
 {: .note}
 
 > **Caution:**
 > Deletion is permanent and cannot be undone within the app. There will be no confirmation step before deletion.
 {: .caution}
 
-**Expected output:** The assignment is removed and a confirmation message is shown.
+**Expected output:** The assignment is removed and a confirmation message is shown in the results box.
 
 ![Delete assignment result](images/delete-assignment.png)
 
@@ -482,7 +492,7 @@ Format: `list`
 > Run `list` after using a find filter if you want to return to the full student and full assignment list.
 {: .tip}
 
-**Expected output:** The student list resets to show all students. The assignment list resets to show all assignments.
+**Expected output:** The student list panel resets to show all students. The assignment list panel resets to show all assignments.
 
 ---
 
@@ -496,7 +506,7 @@ Format: `get /students`
 > **Note:** There should not be any input after the `get /students` command.
 {: .note}
 
-**Expected output:** The student list resets to show all students. The assignment list retains its current view.
+**Expected output:** The student list panel resets to show all students. The assignment list panel retains its current view.
 
 ---
 
@@ -510,13 +520,13 @@ Format: `get /assignments`
 > **Note:** There should not be any input after the `get /assignments` command.
 {: .note}
 
-**Expected output:** The assignment list resets to show all assignments. The student list retains its current view.
+**Expected output:** The assignment list panel resets to show all assignments. The student list panel retains its current view.
 
 ---
 
 ### Viewing a specific student : `get /students STUDENT_ID`
 
-Shows the selected student in the app.
+Shows the selected student in LeTutor.
 
 Format: `get /students STUDENT_ID`
 {: .format}
@@ -528,7 +538,7 @@ Example:
 
 * `get /students S1`
 
-**Expected output:** The selected student is shown in the student list.
+**Expected output:** The selected student is shown in the student list panel and a confirmation message is shown in the results box.
 
 ![Get student result](images/get-student.png)
 
@@ -536,7 +546,7 @@ Example:
 
 ### Viewing a specific assignment : `get /assignments ASSIGNMENT_ID`
 
-Shows the selected assignment in the app.
+Shows the selected assignment in LeTutor.
 
 Format: `get /assignments ASSIGNMENT_ID`
 {: .format}
@@ -550,7 +560,7 @@ Example:
 
 * `get /assignments A2`
 
-**Expected output:** The selected assignment is shown in the assignment list.
+**Expected output:** The selected assignment is shown in the assignment list panel and a confirmation message is shown in the results box.
 
 ![Get assignment result](images/get-assignment.png)
 
@@ -558,7 +568,7 @@ Example:
 
 ### Viewing student milestones : `get /students ... /milestones`
 
-Shows the milestone progress of a student.
+Shows the milestone progress of a selected student.
 
 Format: `get /students STUDENT_ID /milestones`
 {: .format}
@@ -585,7 +595,7 @@ Example milestone output:
 > This command is useful when preparing for a lesson and you want to check a student's outstanding work quickly.
 {: .tip}
 
-**Expected output:** The student's milestone progress is shown.
+**Expected output:** The student's milestone progress is shown in the results box.
 
 ![Milestone view result](images/get-milestone.png)
 
@@ -593,19 +603,19 @@ Example milestone output:
 
 ### Updating a milestone : `set /students ... /milestones`
 
-Sets the milestone status of one assignment for one student.
+Sets the milestone status of a selected assignment for a selected student.
 
 Format: `set /students STUDENT_ID /milestones ASSIGNMENT_ID STATUS [COMPLETED_AT]`
 {: .format}
 
 **Parameter reference:**
 
-| Field           | Description                                                                            |
-|-----------------|----------------------------------------------------------------------------------------|
-| `STUDENT_ID`    | ID given to the student shown in the Student list                                      |
-| `ASSIGNMENT_ID` | ID given to the assignment shown in the Assignment list                                |
-| `STATUS`        | Completion status of the assignment. Consists of `NOT_STARTED`, `COMPLETED`, `OVERDUE` |
-| `COMPLETED_AT`   | Date field that is required depending on the value of `STATUS`                         |
+| Field           | Description                                                                       |
+|-----------------|-----------------------------------------------------------------------------------|
+| `STUDENT_ID`    | ID given to the student shown in the Student list panel                           |
+| `ASSIGNMENT_ID` | ID given to the assignment shown in the Assignment list panel                     |
+| `STATUS`        | Completion status of the assignment. One of `NOT_STARTED`, `COMPLETED`, `OVERDUE` |
+| `COMPLETED_AT`   | Date field that is required if the value of `STATUS` is `COMPLETED`                |
 
 
 Rules:
@@ -615,12 +625,12 @@ Rules:
 * `OVERDUE` is a display-only status computed by LeTutor and cannot be entered manually.
 * If the status is `NOT_STARTED`, do **not** provide `COMPLETED_AT`.
 * If the status is `COMPLETED`, you **must** provide `COMPLETED_AT`.
-* `COMPLETED_AT` must be followed by the format `YYYY-MM-DD HHMM`. Do not type the angle brackets.
-* A space **must** be included between the 2 parameters (date and time) mentioned.
+* `COMPLETED_AT` must be entered in the format `YYYY-MM-DD HHMM`.
+* For `COMPLETED_AT`, a space **must** be included between the date and time values.
 * Do not include square brackets `[]` for the `COMPLETED_AT` field.
 * The student and assignment must share **at least one group**.
 
-> **Caution:** If you try to manually overwrite `OVERDUE` status to `NOT_STARTED`, the system will ignore the request and there will not be any messages indicating so. However, you are able to update an assignment's status to `COMPLETED` even if it was `OVERDUE`.
+> **Caution:** If you try to manually overwrite `OVERDUE` status to `NOT_STARTED`, the system will ignore the request and there will not be any messages indicating this in the results box. However, you are able to update an assignment's status to `COMPLETED` even if it was `OVERDUE`.
 {: .caution}
 
 > **Caution:** If the assignment was already `OVERDUE` and you updated its status to `COMPLETED`, any following attempts to update the status to `NOT_STARTED` will cause the status to revert back to `OVERDUE`.
@@ -635,7 +645,7 @@ Examples:
 > Use `NOT_STARTED` if you want to reset a milestone to incomplete.
 {: .note}
 
-**Expected output:** The milestone status is updated and a confirmation message is shown.
+**Expected output:** The milestone status is updated and a confirmation message is shown in the results box.
 
 ![Set milestone result](images/set-milestone.png)
 
@@ -650,7 +660,7 @@ Format: `find /students <keywords>`
 
 Rules:
 
-* Search is case-insensitive.
+* Search is **case-insensitive**.
 * Keyword order does not matter.
 * Only full words are matched.
 * Students matching at least one keyword will be returned.
@@ -660,7 +670,7 @@ Examples:
 * `find /students Johnny`
 * `find /students alex david`
 
-**Expected output:** Only matching students remain visible in the student list.
+**Expected output:** Only matching students remain visible in the student list panel.
 
 ![Find students result](images/find-students.png)
 
@@ -683,22 +693,22 @@ Format: `find /groups GROUP_NAME`
 
 Rules:
 
-* The student list is filtered to show only students in the specified group.
-* The assignment list is filtered to show only assignments tagged to that group.
-* The group name should match an existing group name exactly (case-sensitive).
+* The student list panel is filtered to show only students in the specified group.
+* The assignment list panel is filtered to show only assignments tagged to that group.
+* The group name should **match an existing group name exactly** (case-sensitive).
 * If no matching group is found, no students and no assignments will be shown.
 
 Example:
 
 * `find /groups T08`
 
-**Expected output:** The result display shows a summary such as:
+**Expected output:** The results box shows a summary such as:
 
 * `X persons listed and Y assignments listed for Group "T08"`
 
 ![Find groups result](images/find-groups.png)
 
-> **Note:** The find command for groups is case-sensitive!
+> **Note:** The find command for groups is **case-sensitive**!
 {: .note}
 
 > **Tip:**
@@ -717,7 +727,7 @@ Format: `clear`
 > This permanently deletes all student and assignment data in the app. There is no confirmation step or warning.
 {: .caution}
 
-**Expected output:** The lists become empty and a message is shown indicating the data has been cleared.
+**Expected output:** The list panels become empty and a message is shown in the results box indicating the data has been cleared.
 
 ---
 
@@ -760,7 +770,7 @@ Advanced users may update the data file directly.
 Here are some tips to help you use LeTutor more smoothly and avoid common mistakes.
 
 ### 1. Use consistent group names
-Try to keep group names consistent throughout the app. For example, use `Sec3A` everywhere instead of mixing `Sec3A`, `sec3a`, and `Secondary 3A`. This makes it easier to organise students and assignments correctly.
+Try to keep group names consistent throughout the app. For example, use `Sec3A` everywhere instead of mixing `Sec3A`, `sec3a`, and `Secondary 3A`. This makes it easier to organize students and assignments correctly.
 
 ### 2. Add students before setting milestones
 Milestones are tied to both students and assignments. It is usually easier to first add your students and assignments, then update milestone progress afterwards.
@@ -768,8 +778,8 @@ Milestones are tied to both students and assignments. It is usually easier to fi
 ### 3. Reuse IDs when managing records
 Each student and assignment has a unique ID, such as `S1` or `A1`. When editing, deleting, viewing details, or updating milestones, always refer to the correct ID to avoid changing the wrong record.
 
-### 4. Use groups to stay organised
-Assign students to the correct groups when adding them. For assignments, use the appropriate group or groups so that only relevant students are associated with that work.
+### 4. Use groups to stay organized
+Assign students to the correct groups when adding them. For assignments, use the appropriate group(s) so that only relevant students are associated with that work.
 
 ### 5. Separate multiple groups clearly
 When entering multiple groups in a command, separate them with commas. For example:
@@ -782,7 +792,7 @@ If you only need to update a student’s details or change an assignment’s lab
 Use `get /students <studentId> /milestones` to review a student’s progress. This is especially useful for spotting incomplete or overdue assignments early.
 
 ### 8. Reset filtered views when needed
-After using commands that narrow what is shown, such as `find` or `get`, use `list` to show all students again and `get /assignments` to show all assignments again.
+After using commands that narrow what is shown, such as `find` or `get`, use `list` to show all students and assignments again.
 
 ### 9. Keep contact details accurate
 Make sure phone numbers and emails are entered correctly when adding or editing students. This helps keep your records reliable and avoids confusion later.
@@ -817,7 +827,7 @@ A: Yes. Separate group names with commas when adding or editing an assignment.
 
 2. **If the Help Window is minimized**, running `help` again will not open a new help window. Restore the minimized help window manually.
 
-3. **LeTutor currently allows COMPLETED_AT values in the future. To keep records accurate, enter only dates and times that have already passed.
+3. **LeTutor currently allows COMPLETED_AT values in the future**. To keep records accurate, enter only dates and times that have already passed.
 ---
 
 ## Command Summary
