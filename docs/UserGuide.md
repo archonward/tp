@@ -95,6 +95,19 @@ java -jar letutor.jar
 
 ---
 
+### UI Overview
+
+![UI Overview](images/ui-overview.png)
+
+- **Command Box**: Where you enter commands to interact with the app.
+- **Results Box**: Displays feedback after each command is executed.
+  - Shows either a confirmation or error message depending on the command executed by the user.
+  - Displays student milestone details.
+- **Student List Panel**: Shows students currently in view.
+- **Assignment List Panel**: Shows assignments currently in view.
+
+___
+
 ### CLI Tutorial
 
 #### What is CLI?
